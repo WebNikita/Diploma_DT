@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+
+import journal
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('journal/', include('journal.urls', namespace='journal'))
 ]
