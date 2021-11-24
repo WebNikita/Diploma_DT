@@ -1,25 +1,13 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
-class Student(models.Model):
-    name = models.CharField(max_length = 150)
-    slug = models.SlugField(max_length = 200, unique = True, null=True)
-    last_name = models.CharField(max_length = 150)
-    middle_name = models.CharField(max_length = 150)
+class User(AbstractUser):
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length = 13)
     email = models.EmailField()
 
-class Teacher(models.Model):
-    name = models.CharField(max_length = 150)
-    slug = models.SlugField(max_length = 200, unique = True, null=True)
-    last_name = models.CharField(max_length = 150)
-    middle_name = models.CharField(max_length = 150)
-    date_of_birth = models.DateField()
-    phone_number = models.CharField(max_length = 13)
-    email = models.EmailField()
 
 class School_subject(models.Model):
 
@@ -34,24 +22,24 @@ class School_subject(models.Model):
     name = models.CharField(max_length = 150)
     day = models.CharField(max_length = 15 ,choices = DAY_CHOICES, default = 'M')
 
-class Group(models.Model):
-    shcool = models.CharField(max_length = 150)
-    teachers = models.ManyToManyField(
-        Teacher,
-        related_name='group'
-    )
-    school_subject = models.ManyToManyField(
-        School_subject,
-        related_name='group'
-    )
+# class Group(models.Model):
+#     shcool = models.CharField(max_length = 150)
+#     teachers = models.ManyToManyField(
+#         Teacher,
+#         related_name='group'
+#     )
+#     school_subject = models.ManyToManyField(
+#         School_subject,
+#         related_name='group'
+#     )
 
-class Turnout(models.Model):
-    data = models.DateField()
-    student = models.ManyToManyField(
-        Student,
-        related_name='turnout'
-    )
-    school_subject = models.ManyToManyField(
-        School_subject,
-        related_name='turnout'
-    )
+# class Turnout(models.Model):
+#     data = models.DateField()
+#     student = models.ManyToManyField(
+#         Student,
+#         related_name='turnout'
+#     )
+#     school_subject = models.ManyToManyField(
+#         School_subject,
+#         related_name='turnout'
+    # )
