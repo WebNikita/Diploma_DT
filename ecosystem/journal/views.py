@@ -4,24 +4,24 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.views.generic import DetailView, ListView, TemplateView
 
-from .models import User
+from .models import Profile
 
-class LK_View_Student(DetailView):
+class LK_View(DetailView):
 
-    # model = Student
+    model = Profile
     template_name = 'index.html'
-    # queryset = Student.objects.all()
+    queryset = Profile.objects.all()
 
-    # def get_context_data(self, **kwargs):
-    #     slug = self.kwargs['slug']
-    #     context = super().get_context_data(**kwargs)
-    #     student_data = Student.objects.get(slug=slug)
+    def get_context_data(self, **kwargs):
+        slug = self.kwargs['slug']
+        context = super().get_context_data(**kwargs)
+        student_data = Profile.objects.get(slug=slug)
 
-    #     context['student_data'] = student_data
+        context['student_data'] = student_data
 
-    #     print(context['student_data'])
+        print(context)
 
-    #     return context
+        return context
 
 class LogIn_View(TemplateView):
     
@@ -45,11 +45,11 @@ class LogIn_View(TemplateView):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Auth secces')
+                    return  redirect(f'/journal/LK/{user.username}')
                 else:
-                    return HttpResponse('Disabled')
+                    return redirect('/journal/login')
             else:
-                return HttpResponse('Invalid login')
+                return redirect('/journal/login')
         else:
             form = LoginForm()
 
