@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.utils.text import slugify
+import datetime
 
 
 class  Profile(models.Model):
@@ -31,9 +32,16 @@ class School_subject(models.Model):
         ('F','Пятница')
     )
 
+    WEEK_TYPE_CHOICES = (
+        ('NUM','Числитель'),
+        ('DEN','Знаменатель'),
+    )
+
     name = models.CharField(max_length = 150)
     day = models.CharField(max_length = 15 ,choices = DAY_CHOICES, default = 'M')
-
+    time = models.TimeField(default=datetime.datetime.now().time())
+    week_type = models.CharField(max_length = 15 ,choices = WEEK_TYPE_CHOICES, default = 'NUM')
+    classroom = models.CharField(max_length = 150, null=True)
 # class Group(models.Model):
 #     shcool = models.CharField(max_length = 150)
 #     teachers = models.ManyToManyField(
