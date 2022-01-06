@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, School_subject
+# from .models import Profile, School_subject
 
 
 # @admin.register(Profile)

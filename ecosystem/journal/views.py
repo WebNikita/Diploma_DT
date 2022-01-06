@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.views.generic import DetailView, ListView, TemplateView
 
-from .models import Profile
+# from .models import Profile
 
 # class LK_View(DetailView):
 
