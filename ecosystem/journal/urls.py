@@ -5,6 +5,6 @@ from . import views
 app_name = 'journal'
 
 urlpatterns = [
-    path('login', views.LogIn_View.as_view(), name='login'),
-    path('LK/<str:slug>/', views.LK_View.as_view(), name='LK'),
+    # path('login', views.LogIn_View.as_view(), name='login'),
+    # path('LK/<str:slug>/', views.LK_View.as_view(), name='LK'),
 ]
