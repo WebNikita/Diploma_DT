@@ -10,7 +10,10 @@ class Extradition(models.Model):
     cell = models.CharField(max_length=128)
     quantity = models.IntegerField()
     data = models.DateTimeField()
-    user = models.CharField(max_length=128)
+    user_id = models.ManyToManyField(
+        Teacher,
+        related_name='extradition'
+    )
 
 class Shipment(models.Model):
     name = models.CharField(max_length=128)
