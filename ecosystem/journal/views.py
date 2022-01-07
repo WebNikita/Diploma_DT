@@ -6,18 +6,57 @@ from django.views.generic import DetailView, ListView, TemplateView
 
 from accounts.models import Student, Teacher
 
-class LK_View(DetailView):
+class LK_student_View(TemplateView):
 
     model = Student
     template_name = 'index.html'
     queryset = Student.objects.all()
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated == True:
+            if request.method.lower() in self.http_method_names:
+                handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+            else:
+                handler = self.http_method_not_allowed
+            return handler(request, *args, **kwargs)
+        else:
+            return redirect("/accounts/login/")
+
+
     def get_context_data(self, **kwargs):
         slug = self.kwargs['slug']
         context = super().get_context_data(**kwargs)
-        student_data = Student.objects.get(slug=slug)
+        user_data = Student.objects.get(slug=slug)
 
-        context['student_data'] = student_data
+        context['user_data'] = user_data
+
+        print(context)
+
+        return context
+
+
+class LK_teacher_View(TemplateView):
+
+    model = Student
+    template_name = 'index.html'
+    queryset = Student.objects.all()
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated == True:
+            if request.method.lower() in self.http_method_names:
+                handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+            else:
+                handler = self.http_method_not_allowed
+            return handler(request, *args, **kwargs)
+        else:
+            return redirect("/accounts/login/")
+
+    def get_context_data(self, **kwargs):
+        slug = self.kwargs['slug']
+        context = super().get_context_data(**kwargs)
+        user_data = Teacher.objects.get(slug=slug)
+
+        context['user_data'] = user_data
 
         print(context)
 
