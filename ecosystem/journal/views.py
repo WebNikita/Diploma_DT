@@ -1,27 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+# from ..accounts.forms import LoginForm
 from django.views.generic import DetailView, ListView, TemplateView
 
-from .models import Profile
+from accounts.models import Student, Teacher
 
-# class LK_View(DetailView):
+class LK_View(DetailView):
 
-#     model = Profile
-#     template_name = 'index.html'
-#     queryset = Profile.objects.all()
+    model = Student
+    template_name = 'index.html'
+    queryset = Student.objects.all()
 
-#     def get_context_data(self, **kwargs):
-#         slug = self.kwargs['slug']
-#         context = super().get_context_data(**kwargs)
-#         student_data = Profile.objects.get(slug=slug)
+    def get_context_data(self, **kwargs):
+        slug = self.kwargs['slug']
+        context = super().get_context_data(**kwargs)
+        student_data = Student.objects.get(slug=slug)
 
-#         context['student_data'] = student_data
+        context['student_data'] = student_data
 
-#         print(context)
+        print(context)
 
-#         return context
+        return context
 
 # class LogIn_View(TemplateView):
     

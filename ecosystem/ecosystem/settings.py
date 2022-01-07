@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'journal.apps.JournalConfig',
     'warehouse.apps.WarehouseConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
