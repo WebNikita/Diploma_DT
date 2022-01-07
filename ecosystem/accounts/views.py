@@ -8,7 +8,7 @@ from .forms import LoginForm
 
 class LogIn_View(TemplateView):
     
-    template_name = 'login/login.html'
+    template_name = 'registration/login.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,7 +22,6 @@ class LogIn_View(TemplateView):
         form = LoginForm(request.POST)
         if form.is_valid():
             form_data = form.cleaned_data
-            print(form_data)
             user = authenticate(request,
                                 username = form_data['login'],
                                 password = form_data['password'])
