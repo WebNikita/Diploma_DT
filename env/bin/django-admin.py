@@ -1,4 +1,4 @@
-#!/home/Froot/learn/Diploma_DT/env/bin/python
+#!/home/proot/Yandex.Disk/work/Diploma_DT/env/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
