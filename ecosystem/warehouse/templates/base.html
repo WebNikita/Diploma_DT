@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../static/css/warehouse.css" >
+
+    <title>ДТ/ЦТПО Склад</title>
+</head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Склад</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="col-xl-12">
+                    <div class="navbar-nav justify-content-end">
+                        <!-- {%if status == 'admin'%} -->
+                            <a class="nav-item nav-link" href="{{url_for('index')}}">{{ navigation[0] }}<span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="{{url_for('log')}}">{{ navigation[1] }}</a>
+                            <a class="nav-item nav-link" href="{{url_for('register')}}">{{ navigation[2] }}</a>
+                            <a class="nav-item nav-link" href="{{url_for('logout')}}">{{ navigation[3] }}</a>
+                        <!-- {%elif status == 'client'%} -->
+                            <a class="nav-item nav-link" href="">Почта<span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="https://t.me/Prom1x_test_bot?start={{name_user}}">Телега</a>
+                            <a class="nav-item nav-link" href="">Вернуться в журнал</a>
+                        <!-- {%endif%} -->
+                    </div>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock %}
+    </body>
+</html>
