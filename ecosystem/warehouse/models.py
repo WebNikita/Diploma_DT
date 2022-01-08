@@ -15,17 +15,17 @@ class Extradition(models.Model):
         related_name='extradition'
     )
 
-class Shipment(models.Model):
-    name = models.CharField(max_length=128)
-    type = models.CharField(max_length=128)
-    cell = models.CharField(max_length=128)
-    quantity = models.IntegerField()
-    data = models.DateField()
+# class Shipment(models.Model):
+#     name = models.CharField(max_length=128)
+#     type = models.CharField(max_length=128)
+#     cell = models.CharField(max_length=128)
+#     quantity = models.IntegerField()
+#     data = models.DateField()
     # user = models.CharField(max_length=128)
 class Warehouse(models.Model):
     name = models.CharField(max_length=128)
     type = models.CharField(max_length=128)
     cell = models.CharField(max_length=128)
-    quantity = models.IntegerField()
     remains = models.IntegerField()
-    data = models.DateTimeField()
+    # remains = models.IntegerField()
+    data = models.DateField()

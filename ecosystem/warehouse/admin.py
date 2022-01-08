@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Extradition, Shipment, Warehouse
+from .models import Extradition, Warehouse
 
 @admin.register(Extradition)
 class ExtraditionAdmin(admin.ModelAdmin):
@@ -9,11 +9,11 @@ class ExtraditionAdmin(admin.ModelAdmin):
     
     # prepopulated_fields = {"slug": ('Username',)}
 
-@admin.register(Shipment)
-class ShipmentAdmin(admin.ModelAdmin):
+# @admin.register(Shipment)
+# class ShipmentAdmin(admin.ModelAdmin):
     
-    # exclude = ['slug']
-    list_display = ['name','type', 'cell', 'quantity', 'data']
+#     # exclude = ['slug']
+#     list_display = ['name','type', 'cell', 'quantity', 'data']
     
     # prepopulated_fields = {"slug": ('Username',)}
 
@@ -21,4 +21,4 @@ class ShipmentAdmin(admin.ModelAdmin):
 class WarehouseAdmin(admin.ModelAdmin):
     
     # exclude = ['slug']
-    list_display = ['name','type', 'cell', 'quantity', 'data', 'remains']
+    list_display = ['name','type', 'cell', 'remains', 'data']
