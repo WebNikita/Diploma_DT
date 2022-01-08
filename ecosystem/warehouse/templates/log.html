@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block container %}    
+    <div class="container scroll">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bd-example">
+                <table class="table table-dark">
+                    <thead>
+                        <tr class="tab_col">
+                            {% for item in column %}
+                                <th scope="col">{{item}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody id='table_info'>
+                        {% for item in table_data %}
+                            <tr>
+                                <td id="name">{{item[0]}}</td>
+                                <td id="username">{{item[1]}}</td>
+                                <td id="category">{{item[2]}}</td>
+                                <td id="cell">{{item[3]}}</td>
+                                <td id="count">{{item[4]}}</td>
+                                <td id="date">{{item[5]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Подключаем Bootstrap JS -->
+    <script src="../static/js/post_script.js"></script> 
+    <script src="../static/js/bootstrap.min.js"></script>
+    {% endblock %}

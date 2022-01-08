@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
-import journal
+import journal, accounts, warehouse
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('journal/', include('journal.urls', namespace='journal'))
+    path('journal/', include('journal.urls', namespace='journal')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('warehouse/', include('warehouse.urls', namespace='warehouse'))
 ]

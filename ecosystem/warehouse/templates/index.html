@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block container %}    
+    <div class="catalog">
+        <div class="row">
+            <div class="col-xl-2 desktops">
+            {% for item in category %}
+                <p>
+                    <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        {{item}}
+                    </a>
+                </p>
+            {% endfor %}
+            </div>
+            <div class="col-xl-12 phones">
+                    <a class="btn btn-primary col-xl-12 margin_bot" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Категории
+                    </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                    {% for item in category %}
+                        <p>
+                            <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                {{item}}
+                            </a>
+                        </p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="phones">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse" id="navbar">
+                        <div class="card card-body">
+                        {% for item in category %}
+                            <p>
+                                <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    {{item}}
+                                </a>
+                            </p>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </nav> -->
+            <div class="col scroll">
+                <div class="bd-example">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Заказ</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="post_form">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-control-label"> 
+                                        {{ form.username.label(class_="form-control-label") }}
+                                        {{ form.username(size=32, class_="form-control", id="recipient_name") }}
+                                        </label>
+        <!--                                 <input type="text" class="form-control" id="recipient-name">-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-control-label">
+                                            {{ form.count.label(class_="form-control-label") }}
+                                            {{ form.count(size=32, class_="form-control", type="number", id="recipient_count") }}
+                                        </label>
+    <!--                                     <input type="text" class="form-control" id="recipient-name"> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="form-control-label">
+                                            {{ form.discr.label(class_="form-control-label") }}
+                                            {{ form.discr(size=32, class_="form-control", id="message_text") }}
+                                        </label>
+                                    <!--     <textarea class="form-control" id="message-text"></textarea> -->
+                                    </div>
+                                </form>
+                                <div class="modal-footer" id="modal_window">        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="editModalLabel">Изменение товара</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="post_form_edit">
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-control-label"> 
+                                        {{ form_edit.username.label(class_="form-control-label") }}
+                                        {{ form_edit.username(size=32, class_="form-control", id="edit_name", disabled="disabled") }}
+                                        </label>
+        <!--                                 <input type="text" class="form-control" id="recipient-name">-->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="form-control-label">
+                                            {{ form_edit.count.label(class_="form-control-label") }}
+                                            {{ form_edit.count(size=32, class_="form-control", id="edit_count") }}
+                                        </label>
+    <!--                                     <input type="text" class="form-control" id="recipient-name"> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="form-control-label">
+                                            {{ form_edit.discr.label(class_="form-control-label") }}
+                                            {{ form_edit.discr(size=32, class_="form-control", id="edit_text") }}
+                                        </label>
+                                    <!--     <textarea class="form-control" id="message-text"></textarea> -->
+                                    </div>
+                                </form>
+                                <div class="modal-footer" id="modal_window_edit">        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-dark">
+                    <thead>
+                        <tr class="tab_col">
+                            {% for item in column %}
+                            <th scope="col">{{item}}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody id='table_info'>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Подключаем Bootstrap JS -->
+    <script src="../static/js/post_script.js"></script> 
+    <script src="../static/js/bootstrap.min.js"></script>
+    {% endblock %}
