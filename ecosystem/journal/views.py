@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 # from ..accounts.forms import LoginForm
 from django.views.generic import DetailView, ListView, TemplateView
 
-from accounts.models import Student, Teacher
+from accounts.models import Student, Teacher, Group
 
 class LK_student_View(TemplateView):
 
@@ -24,14 +24,34 @@ class LK_student_View(TemplateView):
 
 
     def get_context_data(self, **kwargs):
+        
+        DAY_CHOICES = {
+            'M':'Понедельник',
+            'Tu':'Вторник',
+            'W':'Среда',
+            'Th':'Четверг',
+            'F':'Пятница',
+        }
+        
+        schedule = {}
+
         slug = self.kwargs['slug']
         context = super().get_context_data(**kwargs)
         user_data = Student.objects.get(slug=slug)
+        group_data = user_data.group.all()
 
+        for group in group_data:
+            bufer = []
+            bufer.append(DAY_CHOICES[group.day])
+            bufer.append(group.start_time)
+            bufer.append(group.end_time)
+            bufer.append(group.auditorium)
+            schedule[group.school_subject.name] = bufer
+
+        
+        context['schedule'] = schedule
         context['user_data'] = user_data
-
         print(context)
-
         return context
 
 

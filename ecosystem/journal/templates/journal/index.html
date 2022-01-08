@@ -278,105 +278,40 @@
                         </a>
                     </div>
 
-                        
-
                     <div class="row">
-
-                        <!-- Area Chart -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Расписание занятий</h6>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Время</th>
-                                                    <th>Понедельник</th>
-                                                    <th>Вторник</th>
-                                                    <th>Среда</th>
-                                                    <th>Четверг</th>
-                                                    <th>Пятница</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>9:00 - 10:30</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>10:40 - 12:10</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>12:30 - 14:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>14:00-15:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>15:00 - 16:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>16:00 - 17:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>17:00 - 18:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>18:00 - 19:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>19:00 - 20:00</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                    <td>Нет</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        {% for key, value in schedule.items %} 
+                                            <div class="col-xl-4 col-md-6 mb-4">
+                                                <div class="card border-left-info shadow h-100 py-2">
+                                                    <div class="card-body">
+                                                        <div class="row no-gutters align-items-center">
+                                                            <div class="col mr-2">
+                                                                <div class="row no-gutters align-items-center">
+                                                                    <div class="col mr-4">
+                                                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{{ key }}
+                                                                        </div>
+                                                                        <div class="row no-gutters align-items-center">
+                                                                            {{ value.0 }} {{ value.1|time:"H:i" }} - {{ value.2|time:"H:i"}}
+                                                                            <br>
+                                                                            Аудитория: {{ value.3 }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
