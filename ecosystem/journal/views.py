@@ -9,7 +9,7 @@ from accounts.models import Student, Teacher
 class LK_student_View(TemplateView):
 
     model = Student
-    template_name = 'index.html'
+    template_name = 'journal/index.html'
     queryset = Student.objects.all()
 
     def dispatch(self, request, *args, **kwargs):
