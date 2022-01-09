@@ -8,8 +8,6 @@ import datetime
 from journal.models import School_subject
 
 
-
-
 class  Teacher(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -17,14 +15,12 @@ class  Teacher(models.Model):
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length = 13)
 
-
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
         super().save(*args, **kwargs)
     
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
-
 
 class Group(models.Model):
 

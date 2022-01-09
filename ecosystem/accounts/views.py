@@ -8,6 +8,8 @@ from django.views.generic import DetailView, ListView, TemplateView
 
 from .forms import LoginForm, RegistrationForm
 
+from  .week_type import Week_type
+
 class LogIn_View(TemplateView):
     
     template_name = 'registration/login.html'
@@ -31,9 +33,9 @@ class LogIn_View(TemplateView):
                 if user.is_active:
                     login(request, user)
                     if hasattr(user, 'student'):
-                        return  redirect(f'/journal/LK/student/{user.username}')
+                        return  redirect(f'/journal/LK/student/{user.username}/{Week_type.type_of_week()}')
                     else:
-                        return  redirect(f'/journal/LK/teacher/{user.username}')
+                        return  redirect(f'/journal/LK/teacher/{user.username}/{Week_type.type_of_week()}')
                 else:
                     return redirect('/accounts/login/')
             else:
