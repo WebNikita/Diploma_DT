@@ -1,6 +1,10 @@
 from django.contrib import admin
-from .models import Extradition, Warehouse
+from .models import Extradition, Warehouse, Category
 
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name',)}
 @admin.register(Extradition)
 class ExtraditionAdmin(admin.ModelAdmin):
 
@@ -20,5 +24,7 @@ class ExtraditionAdmin(admin.ModelAdmin):
 @admin.register(Warehouse)
 class WarehouseAdmin(admin.ModelAdmin):
     
-    # exclude = ['slug']
-    list_display = ['name','type', 'cell', 'remains', 'data']
+    exclude = ['slug']
+    list_display = ['name','category', 'cell', 'remains', 'created', 'updated']
+    list_filter = ['created', 'updated']
+    prepopulated_fields = {'slug': ('name',)}
