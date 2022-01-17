@@ -13,7 +13,7 @@ class Warehouse(TemplateView):
     def get_context_data(self, **kwargs):
         # slug = self.kwargs['slug']
         context = super().get_context_data(**kwargs)
-        type_product = Warehouse.objects.get(type)
+        # type_product = Warehouse.objects.get(type)
 
         context['user_data'] = type
 
