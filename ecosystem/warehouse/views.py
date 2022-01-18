@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 # from django.contrib.auth import authenticate, login
 
 from django.views.generic import DetailView, ListView, TemplateView
-from warehouse.models import Warehouse
+from warehouse.models import Warehouse, Category
 
 # Create your views here.
 class Warehouse(TemplateView):
@@ -11,13 +11,13 @@ class Warehouse(TemplateView):
     template_name = 'warehouse/index.html'
 
     def get_context_data(self, **kwargs):
-        # slug = self.kwargs['slug']
+        slug = self.kwargs['views']
         context = super().get_context_data(**kwargs)
-        # type_product = Warehouse.objects.get(type)
-
-        context['user_data'] = type
-
         print(context)
+        user_data = Category.objects.get(slug=slug)
+
+        context['user_data'] = user_data
+
 
         return context
 
