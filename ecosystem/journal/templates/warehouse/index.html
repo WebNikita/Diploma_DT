@@ -19,12 +19,13 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
                     {% for item in catalog_list %}
+
                         <p>
                             <a class="btn btn-primary btn-block" href="{% url 'warehouse:render_catalog' item.slug%}">
                                 {{item.name}}
                             </a>
                         </p>
-                    {% endfor %}
+                    {% endfor %} #}
                     </div>
                 </div>
             </div>

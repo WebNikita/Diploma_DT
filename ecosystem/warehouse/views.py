@@ -14,13 +14,11 @@ class Warehouse(TemplateView):
     template_name = 'warehouse/index.html'
 
     def get_context_data(self, **kwargs):
-        # slug = self.kwargs['slug']
+
         context = super().get_context_data(**kwargs)
         category = Category.objects.all()
 
         context['catalog_list'] = category
-
-        print(context)
 
         return context
 
