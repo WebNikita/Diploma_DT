@@ -8,6 +8,6 @@ from .views import Warehouse, Catalog
 app_name = 'warehouse'
 
 urlpatterns = [
-    path('', Warehouse.as_view()),
+    path('', Warehouse.as_view(), name='warehouse'),
     path('<str:slug>/', Catalog.as_view(), name='render_catalog')
 ]
