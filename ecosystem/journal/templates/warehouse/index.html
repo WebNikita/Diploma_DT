@@ -4,10 +4,10 @@
     <div class="catalog">
         <div class="row">
             <div class="col-xl-2 desktops">
-            {% for item in category %}
+            {% for item in catalog_list%}
                 <p>
-                    <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        {{item}}
+                    <a class="btn btn-primary btn-block" href="{% url 'warehouse:render_catalog' item.slug%}">
+                        {{item.name}}
                     </a>
                 </p>
             {% endfor %}
@@ -18,10 +18,10 @@
                     </a>
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body">
-                    {% for item in category %}
+                    {% for item in catalog_list %}
                         <p>
-                            <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                {{item}}
+                            <a class="btn btn-primary btn-block" href="{% url 'warehouse:render_catalog' item.slug%}">
+                                {{item.name}}
                             </a>
                         </p>
                     {% endfor %}
@@ -123,12 +123,20 @@
                 <table class="table table-dark">
                     <thead>
                         <tr class="tab_col">
-                            {% for item in column %}
-                            <th scope="col">{{item}}</th>
-                            {% endfor %}
+                                <th scope="col">Название</th>
+                                <th scope="col">Ячейка</th>
+                                <th scope="col">Остаток</th>
+                                <th scope="col">Действие</th>
                         </tr>
                     </thead>
                     <tbody id='table_info'>
+                        <tr class="tab_col">
+                            {% for item in products %}
+                                <th scope="col">{{item.name}}</th>
+                                <th scope="col">{{item.cell}}</th>
+                                <th scope="col">{{item.remains}}</th>
+                            {% endfor %}
+                        </tr>
                     </tbody>
                 </table>
             </div>

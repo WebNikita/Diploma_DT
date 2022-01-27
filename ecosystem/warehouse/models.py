@@ -7,6 +7,9 @@ class Category(models.Model):
     name = models.CharField(max_length=256, db_index=True)
     slug = models.SlugField(max_length=256, unique=True)
 
+    def __str__(self):
+        return self.name
+
 class Warehouse(models.Model):
     category = models.ForeignKey(Category,
                                 related_name='products',
@@ -18,6 +21,9 @@ class Warehouse(models.Model):
     remains = models.IntegerField()
     created = models.DateTimeField(default=timezone.now)
     updated = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.name
 
 class Extradition(models.Model):
     # category = models.ForeignKey(Category,
