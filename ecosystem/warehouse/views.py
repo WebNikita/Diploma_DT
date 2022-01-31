@@ -1,6 +1,8 @@
+from pyexpat import model
 from unicodedata import category, name
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 from django.views.generic import DetailView, ListView, TemplateView
 from warehouse.models import Warehouse, Category
@@ -11,16 +13,15 @@ class Warehouse(TemplateView):
 
     template_name = 'warehouse/index.html'
 
-    def dispatch(self, request, *args, **kwargs):
-
-        return super().dispatch(request, *args, **kwargs)
-
-
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
         category = Category.objects.all()
-        # status = Teacher.objects.all()
+        status = User.objects.get(is_staff = 'True')
+        teacher = Teacher.objects.all()
+        print(teacher)
+        print(status)
+    
 
         context['catalog_list'] = category
         context['status'] = status
