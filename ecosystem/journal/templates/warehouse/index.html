@@ -124,12 +124,14 @@
                 <table class="table table-dark">
                     <thead>
                         <tr class="tab_col">
-                           {# {% if status == 'admin' %} #}
+                        {% for i in user %}
+                            {% if i.is_staff %}
                                 <th scope="col">Название</th>
                                 <th scope="col">Ячейка</th>
                                 <th scope="col">Остаток</th>
                                 <th scope="col">Действие</th>
-                            {# {% endif %} #}
+                            {% endif %}
+                        {% endfor %}
                         </tr>
                     </thead>
                     <tbody id='table_info'>

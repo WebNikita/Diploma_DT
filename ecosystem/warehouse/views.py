@@ -17,14 +17,18 @@ class Warehouse(TemplateView):
 
         context = super().get_context_data(**kwargs)
         category = Category.objects.all()
-        status = User.objects.get(is_staff = 'True')
-        teacher = Teacher.objects.all()
-        print(teacher)
-        print(status)
+        users = User.objects.all()
+        # teacher = Teacher.objects.all()
+        # print(teacher)
+        print(users)
+        for i in users:
+            # print(i.is_staff)
+            if i.is_staff:
+                print(i.username)
     
 
         context['catalog_list'] = category
-        context['status'] = status
+        context['user'] = users
         
 
         print(context)
