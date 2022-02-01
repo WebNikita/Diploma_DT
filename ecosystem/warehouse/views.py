@@ -1,8 +1,10 @@
+
+# from pyexpat import model
 from pyexpat import model
-from unicodedata import category, name
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.db.models import Q
 
 from django.views.generic import DetailView, ListView, TemplateView
 from warehouse.models import Warehouse, Category
@@ -21,11 +23,6 @@ class Warehouse(TemplateView):
         # teacher = Teacher.objects.all()
         # print(teacher)
         print(users)
-        for i in users:
-            # print(i.is_staff)
-            if i.is_staff:
-                print(i.username)
-    
 
         context['catalog_list'] = category
         context['user'] = users
@@ -54,6 +51,15 @@ class Catalog(TemplateView):
         return context
 
 
-    # def post(self, request, *args, **kwargs):
-    
-    #     return render(request, 'base.html')
+class Search(ListView):
+    model = Warehouse
+    template_name = 'warehouse/index.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        print(self.request.GET)
+        object_list = Warehouse.objects.filter(
+            Q(name__icontains=query) | Q(cell__icontains=query)
+            )
+        print(object_list)
+        return object_list

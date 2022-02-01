@@ -24,6 +24,9 @@
                             {#<a class="nav-item nav-link" href="{{url_for('register')}}">{{ navigation[2] }}</a>#}
                             {#<a class="nav-item nav-link" href="{{url_for('logout')}}">{{ navigation[3] }}</a>#}
                         <!-- {#{%elif status == 'client'%}#} -->
+                            <form action="{% url 'warehouse:search_product' %}" method="get">
+                                <input name="search" type="text" class="form-control" placeholder="Поиск...">
+                            </form>
                             <a class="nav-item nav-link" href="">Почта<span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="https://t.me/Prom1x_test_bot?start={{name_user}}">Телега</a>
                             <a class="nav-item nav-link" href="">Вернуться в журнал</a>
