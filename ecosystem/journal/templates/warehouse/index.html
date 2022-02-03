@@ -125,17 +125,24 @@
                     <thead>
                         <tr class="tab_col">
                         {# {% for i in user %} #}
-                            {% if i.is_staff %}
+                            {# {% if i.is_staff %} #}
                                 <th scope="col">Название</th>
                                 <th scope="col">Ячейка</th>
                                 <th scope="col">Остаток</th>
                                 <th scope="col">Действие</th>
-                            {% endif %}
+                            {# {% endif %} #}
                         {# {% endfor %} #}
                         </tr>
                     </thead>
                     <tbody id='table_info'>
                         <tr class="tab_col">
+                            {% if url == 'warehouse:search_product'%}
+                            {% for item in product %}
+                                <th scope="col">{{item.name}}</th>
+                                <th scope="col">{{item.cell}}</th>
+                                <th scope="col">{{item.remains}}</th>
+                            {% endfor %}
+                            {%endif%}
                             {% for item in products %}
                                 <th scope="col">{{item.name}}</th>
                                 <th scope="col">{{item.cell}}</th>
