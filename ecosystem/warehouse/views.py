@@ -1,19 +1,21 @@
 
 # from pyexpat import model
 from itertools import product
+from multiprocessing import context
 from pyexpat import model
 from unicodedata import name
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.urls import resolve
 
 from django.views.generic import DetailView, ListView, TemplateView
 from warehouse.models import Warehouse, Category
 from accounts.models import Teacher
 
 # Create your views here.
-class Warehouse(TemplateView):
+class Home(TemplateView):
 
     template_name = 'warehouse/index.html'
 
@@ -27,7 +29,9 @@ class Warehouse(TemplateView):
         print(users)
 
         context['catalog_list'] = category
+        context['products'] = Warehouse.objects.all()
         context['user'] = users
+        context['url'] = resolve(self.request.path_info).url_name
         
 
         print(context)
@@ -57,25 +61,27 @@ class SearchResultsView(ListView):
     model = Warehouse
     template_name = 'warehouse/index.html'
 
-    def get_queryset(self):
-        query = self.request.GET.get('search')
-        print(query)
-        # products = Category.objects.all().product.all()
-        # print(products)
-        object_list = Warehouse.objects.filter(Q(name__icontains=query))
-        print(object_list)
-        return object_list
 
     def get_context_data(self, **kwargs):
 
         context = super().get_context_data(**kwargs)
         category_list = Category.objects.all()
-        # products = Category.objects.get(slug = self.kwargs['slug']).products.all()
-        # print(products)
-
+        # print(context)
         context['catalog_list'] = category_list
-        # context['products'] = products
-        
+        context['url'] = resolve(self.request.path_info).url_name
         print(context)
 
         return context
+
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+        print(query)
+        # products = Category.objects.all().product.all()
+        # print(products)
+        object_list = Warehouse.objects.filter(Q(name__icontains=query) | Q(cell__icontains=query))
+        print(object_list)
+        
+        return object_list
+
+    

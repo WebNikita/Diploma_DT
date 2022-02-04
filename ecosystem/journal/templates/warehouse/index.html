@@ -124,31 +124,38 @@
                 <table class="table table-dark">
                     <thead>
                         <tr class="tab_col">
-                        {# {% for i in user %} #}
-                            {# {% if i.is_staff %} #}
+                        
                                 <th scope="col">Название</th>
                                 <th scope="col">Ячейка</th>
                                 <th scope="col">Остаток</th>
                                 <th scope="col">Действие</th>
-                            {# {% endif %} #}
-                        {# {% endfor %} #}
+
                         </tr>
                     </thead>
                     <tbody id='table_info'>
-                        <tr class="tab_col">
-                            {% if url == 'warehouse:search_product'%}
-                            {% for item in product %}
-                                <th scope="col">{{item.name}}</th>
-                                <th scope="col">{{item.cell}}</th>
-                                <th scope="col">{{item.remains}}</th>
+                        {% if url == 'search_product' %}
+                            {% for item in object_list %}
+                                <tr class="tab_col">
+                                    <th scope="col">{{item.name}}</th>
+                                    <th scope="col">{{item.cell}}</th>
+                                    <th scope="col">{{item.remains}}</th>
+                                    <th scope="col">
+                                        <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            {{item}}
+                                        </a>
+                                    </th>
+                                </tr>
                             {% endfor %}
-                            {%endif%}
+                        {% else %}
                             {% for item in products %}
-                                <th scope="col">{{item.name}}</th>
-                                <th scope="col">{{item.cell}}</th>
-                                <th scope="col">{{item.remains}}</th>
+                                <tr class="tab_col">
+                                    <th scope="col">{{item.name}}</th>
+                                    <th scope="col">{{item.cell}}</th>
+                                    <th scope="col">{{item.remains}}</th>
+                                    <th scope="col">{{item.name}}</th>
+                                </tr>
                             {% endfor %}
-                        </tr>
+                        {% endif %}
                     </tbody>
                 </table>
             </div>
