@@ -59,22 +59,19 @@
                                 <form id="post_form">
                                     <div class="form-group">
                                         <label for="recipient-name" class="form-control-label"> 
-                                        {#{{ form.username.label(class_="form-control-label") }}#}
-                                        {#{{ form.username(size=32, class_="form-control", id="recipient_name") }}#}
+                                            <!-- Сюда форму -->
                                         </label>
         <!--                                 <input type="text" class="form-control" id="recipient-name">-->
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="form-control-label">
-                                            {#{{ form.count.label(class_="form-control-label") }}#}
-                                            {#{{ form.count(size=32, class_="form-control", type="number", id="recipient_count") }}#}
+                                            <!-- Сюда форму -->
                                         </label>
     <!--                                     <input type="text" class="form-control" id="recipient-name"> -->
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="form-control-label">
-                                            {#{{ form.discr.label(class_="form-control-label") }}#}
-                                            {#{{ form.discr(size=32, class_="form-control", id="message_text") }}#}
+                                            <!-- Сюда форму -->
                                         </label>
                                     <!--     <textarea class="form-control" id="message-text"></textarea> -->
                                     </div>
@@ -140,9 +137,8 @@
                                     <th scope="col">{{item.cell}}</th>
                                     <th scope="col">{{item.remains}}</th>
                                     <th scope="col">
-                                        <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                            {{item}}
-                                        </a>
+                                        {# % if % #}
+                                        <button type="button" onclick="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
                                     </th>
                                 </tr>
                             {% endfor %}
@@ -152,7 +148,9 @@
                                     <th scope="col">{{item.name}}</th>
                                     <th scope="col">{{item.cell}}</th>
                                     <th scope="col">{{item.remains}}</th>
-                                    <th scope="col">{{item.name}}</th>
+                                    <th scope="col">
+                                        <button type="button" onclick="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
+                                    </th>
                                 </tr>
                             {% endfor %}
                         {% endif %}
