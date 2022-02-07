@@ -27,7 +27,7 @@ class Home(TemplateView):
         # print(teacher)
         print(users)
         form = Order()
-        context['from'] = form
+        context['form'] = form
 
         context['catalog_list'] = category
         context['products'] = Warehouse.objects.all()
@@ -37,10 +37,6 @@ class Home(TemplateView):
         print(context)
         return context
 
-    def order(request):
-        form = Order()
-        print(form)
-        return render(request, 'warehouse/index.html', {'form': form})
 
 
 class Catalog(TemplateView):

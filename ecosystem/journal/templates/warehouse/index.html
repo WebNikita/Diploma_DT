@@ -59,13 +59,14 @@
                                 <form method="post">
                                     {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label"> 
-                                            {{ form.username }}
-                                        </label>
-                                        </div>
-                                        <div class="form-group">
-                                            {{ form.quantity }}
-                                        </div>
+                                        {{ form.product_name }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.quantity }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.massage_text }}
+                                    </div>
                                     <button type="submit">Добавить</button>
                                 </form>
                                 
@@ -82,30 +83,18 @@
                                 <h4 class="modal-title" id="editModalLabel">Изменение товара</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="post_form_edit">
+                                <form method="post">
+                                    {% csrf_token %}
                                     <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label"> 
-                                            {#{{ form_edit.username.label(class_="form-control-label") }}#}
-                                            {#{{ form_edit.username(size=32, class_="form-control", id="edit_name", disabled="disabled") }}#}
-                                        </label>
-        <!--                                 <input type="text" class="form-control" id="recipient-name">-->
+                                        {{ form.product_name }}
                                     </div>
                                     <div class="form-group">
-                                        <label for="recipient-name" class="form-control-label">
-                                            {#{{ form_edit.count.label(class_="form-control-label") }}#}
-                                            {#{{ form_edit.count(size=32, class_="form-control", id="edit_count") }}#}
-                                        </label>
-    <!--                                     <input type="text" class="form-control" id="recipient-name"> -->
+                                        {{ form.quantity }}
                                     </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="form-control-label">
-                                            {#{{ form_edit.discr.label(class_="form-control-label") }}#}
-                                            {#{{ form_edit.discr(size=32, class_="form-control", id="edit_text") }}#}
-                                        </label>
-                                    <!--     <textarea class="form-control" id="message-text"></textarea> -->
-                                    </div>
+                                    <button type="submit">Добавить</button>
                                 </form>
-                                <div class="modal-footer" id="modal_window_edit">        
+                                
+                                <div class="modal-footer" id="modal_window">        
                                 </div>
                             </div>
                         </div>
@@ -129,9 +118,9 @@
                                     <th scope="col">{{item.name}}</th>
                                     <th scope="col">{{item.cell}}</th>
                                     <th scope="col">{{item.remains}}</th>
-                                    <th scope="col">
+                                    <th scope="col" id="{{item.name}}">
                                         {# % if % #}
-                                        <button type="button" onclick="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
                                     </th>
                                 </tr>
                             {% endfor %}
@@ -142,7 +131,7 @@
                                     <th scope="col">{{item.cell}}</th>
                                     <th scope="col">{{item.remains}}</th>
                                     <th scope="col">
-                                        <button type="button" onclick="" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
+                                        <button type="button" class="btn btn-primary" id="{{item.id}}" data-toggle="modal" data-target="#exampleModal">Заказать</button>
                                     </th>
                                 </tr>
                             {% endfor %}

@@ -1,10 +1,15 @@
 
+from unicodedata import name
 from django import forms
+from warehouse.models import Warehouse
+
+# product = Warehouse.objects.all()
+# print(product)
 
 class Order(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={
+    product_name = forms.CharField(widget=forms.TextInput(attrs={
                                                     'class': 'form-control',
-                                                    'placeholder':"Имя пользователя"
+                                                    'placeholder': "product"
                                                     }), 
                                                     required=True,
                                                     disabled=True)
