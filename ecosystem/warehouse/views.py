@@ -1,7 +1,4 @@
 
-# from pyexpat import model
-from itertools import product
-from multiprocessing import context
 from pyexpat import model
 from unicodedata import name
 from django.shortcuts import redirect, render
@@ -9,6 +6,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.urls import resolve
+
+from .form import Order
 
 from django.views.generic import DetailView, ListView, TemplateView
 from warehouse.models import Warehouse, Category
@@ -27,16 +26,22 @@ class Home(TemplateView):
         # teacher = Teacher.objects.all()
         # print(teacher)
         print(users)
+        form = Order()
+        context['from'] = form
 
         context['catalog_list'] = category
         context['products'] = Warehouse.objects.all()
         context['user'] = users
         context['url'] = resolve(self.request.path_info).url_name
         
-
         print(context)
-        
         return context
+
+    def order(request):
+        form = Order()
+        print(form)
+        return render(request, 'warehouse/index.html', {'form': form})
+
 
 class Catalog(TemplateView):
     
