@@ -56,7 +56,7 @@ class  Student(models.Model):
     slug = models.SlugField(unique=True, null=False)
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length = 13)
-    group = models.ManyToManyField(Group, null = True)
+    group = models.ForeignKey(Group, on_delete = models.CASCADE ,null = True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
@@ -67,27 +67,11 @@ class  Student(models.Model):
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
 
-class  Student(models.Model):
-
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    slug = models.SlugField(unique=True, null=False)
-    date_of_birth = models.DateField()
-    phone_number = models.CharField(max_length = 13)
-    group = models.ManyToManyField(Group, null = True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.user.username)
-        super().save(*args, **kwargs)
     
+# class Attendance(models.Model):
 
+#     student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
+#     date = models.DateField()
 
-    def __str__(self):
-        return f'{self.user.first_name} {self.user.last_name}'
-    
-class Attendance(models.Model):
-
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, null=False)
-    date = models.DateField()
-
-    def __str__(self):
-        return f'{self.student.user.first_name} {self.student.user.last_name}'
+#     def __str__(self):
+#         return f'{self.student.user.first_name} {self.student.user.last_name}'
