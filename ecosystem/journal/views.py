@@ -46,7 +46,7 @@ class LK_student_View(TemplateView):
         slug = self.kwargs['slug']
         type_of_week = self.kwargs['type_of_week']
         context = super().get_context_data(**kwargs)
-        user_data = Student.objects.get(slug=slug)
+        user_data = Student.objects.get(slug=slug.lower())
         group_data = user_data.group.all()
 
         for group in group_data:

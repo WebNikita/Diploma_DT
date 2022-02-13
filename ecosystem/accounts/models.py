@@ -38,10 +38,10 @@ class Group(models.Model):
     )
 
     shcool = models.CharField(max_length = 150)
-    auditorium = models.IntegerField(max_length = 15)
+    auditorium = models.IntegerField()
     day = models.CharField(max_length = 15 ,choices = DAY_CHOICES, default = 'M')
-    start_time = models.TimeField(default=datetime.datetime.now().time())
-    end_time = models.TimeField(default=datetime.datetime.now().time())
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     week_type = models.CharField(max_length = 15 ,choices = WEEK_TYPE_CHOICES, default = 'NUM')
     school_subject = ForeignKey(School_subject, on_delete = models.CASCADE, null=True)
     teacher = ForeignKey(Teacher, on_delete = models.CASCADE, null=True)
@@ -56,7 +56,7 @@ class  Student(models.Model):
     slug = models.SlugField(unique=True, null=False)
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length = 13)
-    group = models.ForeignKey(Group, on_delete = models.CASCADE ,null = True)
+    group = models.ManyToManyField(Group,null = True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)

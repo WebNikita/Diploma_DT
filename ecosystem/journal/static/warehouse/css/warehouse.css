@@ -1,0 +1,76 @@
+.catalog{
+    margin: 10px;
+}
+
+/*.collapse{
+    float: right;
+}*/
+
+.btn{
+    background-color: #5E72E4; 
+    border-color: #5E72E4; !important
+}
+
+.btn:hover{
+    background-color: #5364c6;
+    border-color: #5364c6;
+}
+
+.scroll{
+    overflow-y: hidden;
+}
+
+.desktops{
+    display: block;
+}
+
+.phones{
+    display: none;
+ }
+ 
+.margin_bot{
+        margin-bottom: 2%;
+    }
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablets and medium desktops */
+@media (min-width: 980px) and (max-width: 1199px) {
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 769px) and (max-width: 979px) {
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (min-width: 640px) and (max-width: 768px){
+    
+}
+
+/* Landscape phones and smaller */
+@media (min-width: 320px) and (max-width: 480px) {
+    .desktops{
+        display: none;
+    }
+    .phones{
+        display: block;
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 320px) {
+    .desktops{
+        display: none;
+    }
+    .phones{
+        display: block;
+        width: 100%;
+    }
+    
+}

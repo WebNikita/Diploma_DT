@@ -1,0 +1,145 @@
+{% extends "warehouse/base.html" %}
+
+{% block content %}
+    <div class="catalog">
+        <div class="row">
+            <div class="col-xl-2 desktops">
+            {% for item in catalog_list%}
+                <p>
+                    <a class="btn btn-primary btn-block" href="{% url 'warehouse:render_catalog' item.slug%}">
+                        {{item.name}}
+                    </a>
+                </p>
+            {% endfor %}
+            </div>
+            <div class="col-xl-12 phones">
+                    <a class="btn btn-primary col-xl-12 margin_bot" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Категории
+                    </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                    {% for item in catalog_list %}
+
+                        <p>
+                            <a class="btn btn-primary btn-block" href="{% url 'warehouse:render_catalog' item.slug%}">
+                                {{item.name}}
+                            </a>
+                        </p>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="phones">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse" id="navbar">
+                        <div class="card card-body">
+                        {% for item in category %}
+                            <p>
+                                <a  onclick="send_post('{{item}}')" class="btn btn-primary btn-block" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    {{item}}
+                                </a>
+                            </p>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </nav> -->
+            <div class="col scroll">
+                <div class="bd-example">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="exampleModalLabel">Заказ</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ form.product_name }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.quantity }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.massage_text }}
+                                    </div>
+                                    <button type="submit">Добавить</button>
+                                </form>
+                                
+                                <div class="modal-footer" id="modal_window">        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="editModalLabel">Изменение товара</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        {{ form.product_name }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.quantity }}
+                                    </div>
+                                    <button type="submit">Добавить</button>
+                                </form>
+                                
+                                <div class="modal-footer" id="modal_window">        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-dark">
+                    <thead>
+                        <tr class="tab_col">
+                        
+                                <th scope="col">Название</th>
+                                <th scope="col">Ячейка</th>
+                                <th scope="col">Остаток</th>
+                                <th scope="col">Действие</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id='table_info'>
+                        {% if url == 'search_product' %}
+                            {% for item in object_list %}
+                                <tr class="tab_col">
+                                    <th scope="col">{{item.name}}</th>
+                                    <th scope="col">{{item.cell}}</th>
+                                    <th scope="col">{{item.remains}}</th>
+                                    <th scope="col" id="{{item.name}}">
+                                        {# % if % #}
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Заказать</button>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            {% for item in products %}
+                                <tr class="tab_col">
+                                    <th scope="col">{{item.name}}</th>
+                                    <th scope="col">{{item.cell}}</th>
+                                    <th scope="col">{{item.remains}}</th>
+                                    <th scope="col">
+                                        <button type="button" class="btn btn-primary" id="{{item.id}}" data-toggle="modal" data-target="#exampleModal">Заказать</button>
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
