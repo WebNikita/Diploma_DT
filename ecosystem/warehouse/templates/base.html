@@ -17,21 +17,20 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="col-xl-12">
                     <div class="navbar-nav justify-content-end">
-                        <!-- {%if status == 'admin'%}
+                        <!-- {%if status == 'admin'%} -->
                             <a class="nav-item nav-link" href="{{url_for('index')}}">{{ navigation[0] }}<span class="sr-only">(current)</span></a>
                             <a class="nav-item nav-link" href="{{url_for('log')}}">{{ navigation[1] }}</a>
                             <a class="nav-item nav-link" href="{{url_for('register')}}">{{ navigation[2] }}</a>
                             <a class="nav-item nav-link" href="{{url_for('logout')}}">{{ navigation[3] }}</a>
-                        {%elif status == 'client'%}
-                            <a class="nav-item nav-link" href="{{url_for('index')}}">{{ navigation[0] }}<span class="sr-only">(current)</span></a>
-
-                            <a class="nav-item nav-link" href="https://t.me/Prom1x_test_bot?start={{name_user}}">{{ navigation[1] }}</a>
-                            <a class="nav-item nav-link" href="{{url_for('logout')}}">{{ navigation[2] }}</a>
-                        {%endif%} -->
+                        <!-- {%elif status == 'client'%} -->
+                            <a class="nav-item nav-link" href="">Почта<span class="sr-only">(current)</span></a>
+                            <a class="nav-item nav-link" href="https://t.me/Prom1x_test_bot?start={{name_user}}">Телега</a>
+                            <a class="nav-item nav-link" href="">Вернуться в журнал</a>
+                        <!-- {%endif%} -->
                     </div>
                 </div>
             </div>
         </nav>
-        <!-- {% block content %}{% endblock %} -->
+        {% block content %}{% endblock %}
     </body>
 </html>
