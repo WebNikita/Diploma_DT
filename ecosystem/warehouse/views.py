@@ -45,14 +45,14 @@ class Home(TemplateView):
                 handler = self.http_method_not_allowed
             return handler(request, *args, **kwargs)
         else:
-            return redirect("/accounts/login/")
+            return render(request, "/accounts/login/")
 
 class Catalog(TemplateView):
     
     template_name = 'warehouse/index.html'
 
     def get_context_data(self, **kwargs):
-
+        
         context = super().get_context_data(**kwargs)
         category_list = Category.objects.all()
         products = Category.objects.get(slug = self.kwargs['slug']).products.all()
